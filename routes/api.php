@@ -28,7 +28,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('verify-token', 'Auth\VerifyTokenController');
 // Route::post('request-token', 'Auth\RequestTokenController');
 Route::post('reset-password', 'Auth\ResetPasswordController');
-Route::post('verify-phone', 'Auth\VerifyPhoneController');
+// Route::post('verify-phone', 'Auth\VerifyPhoneController');
 Route::post('register', 'Auth\RegisterController@register');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('refresh', 'Auth\LoginController@refresh');
