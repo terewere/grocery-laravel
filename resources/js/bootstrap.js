@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'development') {
 
 } else {
 
-    window.axios.defaults.baseURL = "45.32.157.58/api/";
+    window.axios.defaults.baseURL = "http://45.32.157.58/api/";
     // window.axios.defaults.baseURL = "https://gir.ghanahajjapp.com/api/";
 
 }
