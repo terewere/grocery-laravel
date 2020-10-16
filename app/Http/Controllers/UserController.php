@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\User;
+use \App\Models\User;
 use \App\Device;
 
 
@@ -97,6 +97,7 @@ class UserController extends Controller
 
     public function user()
     {
+        logger('hhhhh');
        return new UserResource( request()->user()->load('roles.permissions', 'permissions'));
     }
 

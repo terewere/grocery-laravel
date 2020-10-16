@@ -1,9 +1,11 @@
 <?php
+namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\User;
+use App\Models\User;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+
 
 class RolePermissionSeeder extends Seeder
 {
@@ -33,17 +35,16 @@ class RolePermissionSeeder extends Seeder
 
      
 
-        // $user = User::create([
-        //     'name' => 'Shaibu Zachariyya',
-        //     'email' => '0243270000',
-        //     'password' => bcrypt("qwert123"),
-        // ]);
+        $user = User::create([
+            'name' => 'Shaibu Zachariyya',
+            'email' => 'a@a.com',
+            'password' => bcrypt("qwert123"),
+        ]);
 
-        $user = User::find(1);
 
 
 $this->command->info($user->email);
-        // $user->givePermissionTo('do_all');
+     $user->givePermissionTo('do_all');
 
 
      

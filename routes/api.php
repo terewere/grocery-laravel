@@ -4,24 +4,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 
 // Route::get('/categories', 'CategoryController@index');
 
 
-// Route::group(['middleware' => ['auth:api']], function () {
+Route::group(['middleware' => ['auth:api']], function () {
 
-//     Route::get('/user', 'UserController@user');
-//     Route::post('logout', 'Auth\LoginController@logout');
-//     Route::match(array('PUT', 'PATCH'), "/users/permissions/{user}", array(
-//         'uses' => 'UserController@syncPermissions',
-//     ));
+    Route::get('/user', 'UserController@user');
+    Route::post('logout', 'Auth\LoginController@logout');
+    Route::match(array('PUT', 'PATCH'), "/users/permissions/{user}", array(
+        'uses' => 'UserController@syncPermissions',
+    ));
 
-//     });
+    });
+
+Route::apiResources([
+    'users' => 'UserController',
+    'roles' => 'RolesController',
+    'items' => 'ItemController',
+]);
 
 
 

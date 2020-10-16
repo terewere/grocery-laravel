@@ -1,7 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\Coupon;
+use App\Models\Coupon;
 
 class CouponSeeder extends Seeder
 {

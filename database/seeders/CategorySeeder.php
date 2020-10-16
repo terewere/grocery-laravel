@@ -1,9 +1,11 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\Item;
-use App\ItemImage;
-use App\Category;
+use App\Models\Item;
+use App\Models\ItemImage;
+use App\Models\Category;
 
 use Faker\Generator as Faker;
 

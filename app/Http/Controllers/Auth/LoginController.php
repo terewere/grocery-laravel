@@ -25,6 +25,7 @@ class LoginController extends Controller
             'email' => 'bail|required|email',
             'password' => 'required',
         ]);
+        
 
         return $this->issueToken($request, 'password');
 

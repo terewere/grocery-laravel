@@ -14,7 +14,7 @@ class User extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'number' => $this->email,
+            'email' => $this->email,
             'imgUrl' => $this->img_url,
             'permissions' => $this->getAllPermissions()->pluck('name'),
             'role' => $this->roles->first()['name'],
