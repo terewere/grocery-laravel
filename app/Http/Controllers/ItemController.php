@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Item;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Http\Resources\ItemCollection;
 
@@ -20,7 +20,7 @@ class ItemController extends Controller
 
 
         if ($categoryId == null)  {
-            return new AudioCollection([]);
+            return new ItemCollection([]);
         }
 
         $query = Item::where('category_id', $categoryId)
@@ -37,8 +37,6 @@ class ItemController extends Controller
 
         $audio = $query->paginate($length);
 
-
-        // return new AudioCollection($audio);
 
         return (new ItemCollection($audio))->additional(['meta' => [
             'draw' => request()->input('draw'),

@@ -61,8 +61,8 @@
               <thead>
                 <tr>
                   <th>Count</th>
+                  <th>Image</th>
                   <th>Title</th>
-                  <th>Language</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -71,8 +71,14 @@
 
                 <tr v-for="audio in audios" :key="audio.id">
                   <td>{{audio.no}}</td>
-                  <td>{{audio.title}}</td>
-                  <td>{{audio.language}}</td>
+                   <td><img style="display:block; margin: 0 auto;"
+                id="imgUrl"
+                :src=" '/' + audio.imgUrl || '/images/no-image.jpg'"
+                width="100"
+                height="auto"
+                alt="no image"
+              /></td>
+                  <td>{{audio.label}}</td>
                   <td>
                     <div id="del_el" class="btn-group">
                         <router-link :to="`/audio/${audio.id}`">Recordings</router-link>
@@ -151,7 +157,7 @@ export default {
  
     return {
       pageTitle: "Audio",
-      url: "/audio",
+      url: "/items",
       audios: [],
 
     };

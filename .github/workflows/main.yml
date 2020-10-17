@@ -98,3 +98,20 @@ jobs:
     #     chmod -R 777 bootstrap/cache/
     #     php artisan storage:link
     #     php artisan migrate:fresh --seed --force --no-interaction
+
+
+
+
+    # RUN SEBSEQUENTLY
+    - name: Executing remote  command
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+        PORT: 22
+        script: |
+        cd /var/www/grocery
+        chmod -R 777 storage/
+        chmod -R 777 bootstrap/cache/
+        php artisan migrate:fresh --seed --force --no-interaction

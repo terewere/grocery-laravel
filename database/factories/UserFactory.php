@@ -1,14 +1,14 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\User;
-use App\Phone;
-use App\Item;
-use App\ItemImage;
-use App\Speaker;
+use App\Models\User;
+use App\Models\Phone;
+use \App\Models\Item;
+use \App\Models\ItemImage;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 
 $factory->define(Phone::class, function (Faker $faker) {
@@ -34,18 +34,18 @@ $factory->define(User::class, function (Faker $faker) {
 });
 
 
-$factory->define(Item::class, function (Faker $faker) {
-    $item = [
-        'label' => $faker->name,
-        'img_url' => $faker->imageUrl($width = 50, $height = 50),
-        'category_id' => 1,
-        'price' => $faker->numberBetween($min = 500, $max = 2000),
-        'description' => $faker->sentence($nbWords = 15, $variableNbWords = true)
-    ];
+// $factory->define(Item::class, function (Faker $faker) {
+//     $item = [
+//         'label' => $faker->name,
+//         'img_url' => $faker->imageUrl($width = 50, $height = 50),
+//         'category_id' => 1,
+//         'price' => $faker->numberBetween($min = 500, $max = 2000),
+//         'description' => $faker->sentence($nbWords = 15, $variableNbWords = true)
+//     ];
 
-        return $item;
+//         return $item;
 
-});
+// });
 
 
 $factory->define(ItemImage::class, function (Faker $faker) {
@@ -56,16 +56,3 @@ $factory->define(ItemImage::class, function (Faker $faker) {
     ];
 });
 
-
-
-$factory->define(Speaker::class, function (Faker $faker) {
-    $item = [
-        'title' => $faker->name,
-        'image_url' => $faker->imageUrl($width = 50, $height = 50),
-        'user_id' => 1,
-        'description' => $faker->sentence($nbWords = 15, $variableNbWords = true)
-    ];
-
-        return $item;
-
-});

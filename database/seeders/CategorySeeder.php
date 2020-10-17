@@ -49,7 +49,7 @@ class CategorySeeder extends Seeder
             
             for ($i=0; $i < 30; $i++) {
 
-                $item = factory(Item::class)->create(
+                $item = Item::factory()->create(
                     [ 'category_id' => $cat->id]
                 );
         
@@ -57,7 +57,7 @@ class CategorySeeder extends Seeder
         
                for ($j=0; $j < 2; $j++) { 
                    
-                    factory(ItemImage::class)->create(
+                ItemImage::factory()->create(
                         ['item_id' => $item->id]
                     );
             

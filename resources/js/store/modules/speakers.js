@@ -54,7 +54,7 @@ const mutations = {
 
 const actions = {
 
-    fetchSpeakers: async({ commit, state }, url = 'speakers') => {
+    fetchSpeakers: async({ commit, state }, url = 'categories') => {
 
         commit(SET_LOADING, true)
         state.tableData.draw++

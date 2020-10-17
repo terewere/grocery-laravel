@@ -15,14 +15,16 @@ class User extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'address' => $this->address,
+            'city' => $this->city,
+            'region' => $this->region,
+            'phone' => $this->phone,
             'imgUrl' => $this->img_url,
             'permissions' => $this->getAllPermissions()->pluck('name'),
             'role' => $this->roles->first()['name'],
            
         ];
     }
-
-
 
 
 }

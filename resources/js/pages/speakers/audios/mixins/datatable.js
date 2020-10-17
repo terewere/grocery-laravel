@@ -46,7 +46,7 @@ export default {
 
         async getData() {
 
-            await this.fetchAudios({ url: this.url, feed_id: this.$route.params.audio });
+            await this.fetchAudios({ url: this.url, category_id: this.$route.params.audio });
             this.mergeData()
 
         },

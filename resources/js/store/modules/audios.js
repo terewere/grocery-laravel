@@ -14,7 +14,7 @@ const state = {
         search: "",
         column: 0,
         dir: "desc",
-        feed_id: 0
+        category_id: 0
     },
 }
 
@@ -55,7 +55,7 @@ const mutations = {
 const actions = {
 
     fetchAudios: async({ commit, state }, payload) => {
-        state.tableData.feed_id = payload.feed_id
+        state.tableData.category_id = payload.category_id
 
         commit(SET_LOADING, true)
         state.tableData.draw++

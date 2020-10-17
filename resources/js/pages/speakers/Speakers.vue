@@ -61,6 +61,7 @@
               <thead>
                 <tr>
                   <th>Count</th>
+                  <th>Photo</th>
                   <th>Name</th>
                   <th>Action</th>
                 </tr>
@@ -70,10 +71,17 @@
 
                 <tr v-for="account in speakers" :key="account.id">
                   <td>{{account.no}}</td>
-                  <td>{{account.title}}</td>
+                  <td><img style="display:block; margin: 0 auto;"
+                id="imgUrl"
+                :src="account.imgUrl || '/images/no-image.jpg'"
+                width="100"
+                height="auto"
+                alt="no image"
+              /></td>
+                  <td>{{account.label}}</td>
                   <td>
                     <div id="del_el" class="btn-group">
-                        <router-link :to="`/audio/${account.id}`">Recordings</router-link>
+                        <router-link :to="`/audio/${account.id}`">View</router-link>
                       <a
                         href
                         class="dropdown-toggle dropdown-toggle-split"
@@ -139,8 +147,8 @@ export default {
   data() {
  
     return {
-      pageTitle: "Speakers",
-      url: "/speakers",
+      pageTitle: "Categories",
+      url: "/categories",
       speakers: [],
 
     };

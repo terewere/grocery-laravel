@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     });
 
 Route::apiResources([
+    'categories' => 'CategoryController',
     'users' => 'UserController',
     'roles' => 'RolesController',
     'items' => 'ItemController',

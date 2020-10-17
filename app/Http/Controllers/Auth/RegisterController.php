@@ -36,12 +36,14 @@ class RegisterController extends Controller
         $data = [
             'name' => $request['name'],
             'email' => $request['email'],
+            'address' => $request['address'],
+            'city' => $request['city'],
+            'region' => $request['region'],
+            'phone' => $request['phone'],
             'password' => bcrypt($request['password'])
         ];
 
          $user = User::create($data);
-
-         logger($user);
         
 
         return $this->issueToken($request, 'password');
