@@ -34,7 +34,6 @@ class Order extends JsonResource
             'paymentMethod' => $this->payment_method,
             'user' =>  new User($this->user),
             'items' =>  new ItemCollection($this->items),
-            // 'quantity' => $this->items()->quantity
 
           
         ];
