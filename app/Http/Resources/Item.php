@@ -40,8 +40,11 @@ class Item extends JsonResource
             // 'registrationYear' => $this->registration_year,
             // 'engineSize' => $this->engine_size,
             // 'transmission' => $this->transmission
+             'quantity' => optional($this->pivot)->quantity
         ];
     }
 
+
+ 
     
 }

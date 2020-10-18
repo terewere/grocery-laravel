@@ -28,6 +28,8 @@ Route::apiResources([
     'users' => 'UserController',
     'roles' => 'RolesController',
     'items' => 'ItemController',
+    'checkout' => 'CheckoutController',
+    'orders' => 'OrderController',
 ]);
 
 

@@ -2,82 +2,73 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Resources\OrderCollection;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
-        //
+    
+            // \sleep(3);
+            $length = request()->input('length');
+            $searchValue = request()->input('search');
+            $dir = request()->input('dir');
+    
+
+            $query = Order::with('user', 'items')
+            // ->where('status', 'approved')
+            ->orderBy('created_at', 'asc');
+    
+            if ($searchValue) {
+                $query->where(function($query) use ($searchValue) {
+                    $query->where('title', 'like', '%' . $searchValue . '%')
+                    ->orWhere('language', 'like', '%' . $searchValue . '%');
+                });
+            }
+           
+    
+            $orders = $query->paginate($length);
+    
+    
+            return (new OrderCollection($orders))->additional(['meta' => [
+                'draw' => request()->input('draw'),
+            ]]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(Order $order)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
+  
     public function edit(Order $order)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
+  
     public function update(Request $request, Order $order)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy(Order $order)
     {
         //

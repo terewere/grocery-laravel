@@ -18,23 +18,28 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
-            $table->string('billing_email')->nullable();
-            $table->string('billing_name')->nullable();
-            $table->string('billing_address')->nullable();
-            $table->string('billing_city')->nullable();
-            $table->string('billing_region')->nullable();
-            $table->string('billing_phone')->nullable();
-            $table->string('billing_name_on_card')->nullable();
-            $table->integer('billing_discount')->default(0);
-            $table->string('billing_discount_code')->nullable();
-            $table->integer('billing_subtotal')->nullable();
-            $table->integer('billing_tax')->nullable();
-            $table->integer('billing_total')->nullable();
+            // $table->string('email')->nullable();
+            // $table->string('name')->nullable();
+            // $table->string('address')->nullable();
+            // $table->string('city')->nullable();
+            // $table->string('region')->nullable();
+            // $table->string('phone')->nullable();
+            // $table->string('name_on_card')->nullable();
+            $table->integer('discount')->default(0);
+            $table->string('discount_code')->nullable();
+            $table->integer('sub_total')->nullable();
+            $table->integer('tax')->nullable();
+            $table->integer('grand_total')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('delivery_method')->nullable();
+            $table->integer('shipping_fee')->nullable();
             $table->string('payment_gateway')->default('hubtel');
-            $table->boolean('shipped')->default(false);
+            $table->enum('status', [ 'processed', 'shipped', 'delivered'])->default('processed');
             $table->string('error')->nullable();
             $table->timestamps();
         });
+
+
     }
 
     /**
