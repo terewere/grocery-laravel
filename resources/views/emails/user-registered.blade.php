@@ -1,12 +1,9 @@
 @component('mail::message')
-# Introduction
+Dear <strong>{{$user['name']}}</strong>,
 
-The body of your message.
+<p>Thank you for registering with ZongoCho, Zongo's finest food service.</p>
+<p>Your email is <strong>{{$user['email']}}</strong>,</p>
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
-
-Thanks,<br>
+Thank You!<br>
 {{ config('app.name') }}
 @endcomponent

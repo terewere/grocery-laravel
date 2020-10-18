@@ -47,7 +47,7 @@ class RegisterController extends Controller
 
          $user = User::create($data);
 
-         Mail::to($user)->send(new \App\Mail\UserRegisteredMail());
+         Mail::to($user)->send(new \App\Mail\UserRegisteredMail($user));
         
 
         return $this->issueToken($request, 'password');
