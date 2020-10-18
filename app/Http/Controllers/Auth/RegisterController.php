@@ -7,6 +7,8 @@ use App\Phone;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Passport\Client;
+use App\Mail\UserRegisteredMail;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -44,6 +46,8 @@ class RegisterController extends Controller
         ];
 
          $user = User::create($data);
+
+         Mail::to($user)->send(new \App\Mail\UserRegisteredMail());
         
 
         return $this->issueToken($request, 'password');
