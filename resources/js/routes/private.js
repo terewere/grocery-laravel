@@ -22,6 +22,9 @@ const NotFound = () =>
 const Speakers = () =>
     import ( /* webpackChunkName: "Speakers" */ '@/pages/speakers/Speakers.vue');
 
+const Orders = () =>
+    import ( /* webpackChunkName: "Orders" */ '@/pages/orders/Orders.vue');
+
 const Audios = () =>
     import ( /* webpackChunkName: "Audios" */ '@/pages/speakers/audios/Audios.vue');
 
@@ -82,6 +85,19 @@ const routes = [{
     {
         path: '/speakers',
         component: Speakers,
+        meta: {
+            middleware: [
+                auth,
+                permission('view_users')
+
+            ]
+        },
+
+    },
+
+    {
+        path: '/orders',
+        component: Orders,
         meta: {
             middleware: [
                 auth,

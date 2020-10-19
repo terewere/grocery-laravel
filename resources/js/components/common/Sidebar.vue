@@ -9,7 +9,7 @@
         class="brand-image img-circle elevation-3"
         style="opacity: .8"
       />
-      <span class="brand-text font-weight-light pl-3">Western Homes</span>
+      <span class="brand-text font-weight-light pl-3">Grocery App</span>
     </router-link>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -181,31 +181,18 @@ export default {
           icon: "fas fa-tachometer-alt nav-icon text-success",
           permissions: ["view_dashboard"]
         },
-        {
-          name: "People",
-          icon: "nav-icon fas fa-users text-info",
-          permissions: ["view_suppliers", "view_employees", "view_clients"],
-          child: [
-            {
-              name: "Speakers",
+          {
+              name: "Categories",
               link: "/speakers",
               icon: "fas fa-circle nav-icon",
               permissions: ["view_employees"]
             },
-            {
-              name: "Suppliers",
-              link: "/suppliers",
+             {
+              name: "Orders",
+              link: "/orders",
               icon: "fas fa-circle nav-icon",
-              permissions: ["view_suppliers"]
+              permissions: []
             },
-            {
-              name: "Clients",
-              link: "/clients",
-              icon: "fas fa-circle nav-icon",
-              permissions: ["view_clients"]
-            }
-          ]
-        },
   
           {
           name: "User Management",

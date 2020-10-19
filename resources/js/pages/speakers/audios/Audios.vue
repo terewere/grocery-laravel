@@ -18,7 +18,7 @@
                   type="button"
                   class="btn btn-success mr-2 btn-sm float-right"
                   @click="showModal('#add-account')"
-                >Add Speaker</button>
+                >Add Item</button>
               </div>
               <!-- /.col -->
             </div>
@@ -62,7 +62,9 @@
                 <tr>
                   <th>Count</th>
                   <th>Image</th>
-                  <th>Title</th>
+                  <th width="45%">Item Name</th>
+                  <th>Price</th>
+
                   <th>Action</th>
                 </tr>
               </thead>
@@ -78,10 +80,14 @@
                 height="auto"
                 alt="no image"
               /></td>
-                  <td>{{audio.label}}</td>
+                  <td>
+                    <p>{{audio.label}}</p>
+                    <small>{{audio.description}}</small>
+                  </td>
+                  <td>{{audio.price | currency}}</td>
                   <td>
                     <div id="del_el" class="btn-group">
-                        <router-link :to="`/audio/${audio.id}`">Recordings</router-link>
+                        <router-link :to="`/audio/${audio.id}`">View</router-link>
                       <a
                         href
                         class="dropdown-toggle dropdown-toggle-split"
@@ -156,7 +162,7 @@ export default {
   data() {
  
     return {
-      pageTitle: "Audio",
+      pageTitle: "Items",
       url: "/items",
       audios: [],
 

@@ -17,8 +17,8 @@
                   :disabled="!isOnline"
                   type="button"
                   class="btn btn-success mr-2 btn-sm float-right"
-                  @click="showModal('#add-category')"
-                >Add Category</button>
+                  @click="showModal('#add-account')"
+                >Add Item</button>
               </div>
               <!-- /.col -->
             </div>
@@ -32,7 +32,7 @@
               <label class="d-flex">
                 Show
                 <select
-                  v-model="getSpeakerData.length"
+                  v-model="getAudioData.length"
                   @change="getData()"
                   class="form-control mx-2"
                 >
@@ -49,7 +49,7 @@
                 <input
                   class="form-control"
                   type="text"
-                  v-model="getSpeakerData.search"
+                  v-model="getAudioData.search"
                   placeholder="Search Table"
                   @input="getData()"
                 />
@@ -61,27 +61,27 @@
               <thead>
                 <tr>
                   <th>Count</th>
-                  <th>Photo</th>
-                  <th>Name</th>
+                  <th>Image</th>
+                  <th>Title</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-if="speakers.length==0" class="odd"><td valign="top" colspan="9" class="text-center dataTables_empty">No data available in table</td></tr>
+                <tr v-if="audios.length==0" class="odd"><td valign="top" colspan="9" class="text-center dataTables_empty">No data available in table</td></tr>
 
-                <tr v-for="account in speakers" :key="account.id">
-                  <td>{{account.no}}</td>
-                  <td><img style="display:block; margin: 0 auto;"
+                <tr v-for="audio in audios" :key="audio.id">
+                  <td>{{audio.no}}</td>
+                   <td><img style="display:block; margin: 0 auto;"
                 id="imgUrl"
-                :src="account.imgUrl || '/images/no-image.jpg'"
+                :src=" '/' + audio.imgUrl || '/images/no-image.jpg'"
                 width="100"
                 height="auto"
                 alt="no image"
               /></td>
-                  <td>{{account.label}}</td>
+                  <td>{{audio.label}}</td>
                   <td>
                     <div id="del_el" class="btn-group">
-                        <router-link :to="`/audio/${account.id}`">View</router-link>
+                        <router-link :to="`/audio/${audio.id}`">Recordings</router-link>
                       <a
                         href
                         class="dropdown-toggle dropdown-toggle-split"
@@ -92,8 +92,14 @@
                         <a
                           class="dropdown-item"
                           href
-                          @click.prevent="showModal('#edit-account', account)"
+                          @click.prevent="showModal('#edit-account', audio)"
                         >Edit</a>
+
+                        <a
+                          class="dropdown-item"
+                          href
+                          @click.prevent="showModal('#edit-status', audio)"
+                        >Update Status</a>
                       </div>
                     </div>
                   </td>
@@ -114,8 +120,8 @@
               <i class="fa fa-trash"></i> Delete Multiple
             </button> -->
 
-            <EditSpeaker />
-            <AddCategory />
+            <EditAudio />
+            <EditStatus />
           </div>
         </div>
       </div>
@@ -127,22 +133,22 @@
 import Pagination from "@/components/common/Pagination.vue";
 import datatable from "./mixins/datatable";
 import globalDatatableMixin from "@/plugins/mixins/tabledata.js";
-import EditSpeaker from "./EditSpeaker";
-import AddCategory from "./Add";
+import EditAudio from "./EditAudio";
+import EditStatus from "./EditStatus";
 import { mapActions, mapGetters } from "vuex";
 export default {
   mixins: [datatable, globalDatatableMixin],
 
   components: {
-    AddCategory,
-    EditSpeaker,
+    EditAudio,
+    EditStatus,
     Pagination
   },
 
  
 
   computed: {
-    ...mapGetters([ "getSpeakers"]),
+    ...mapGetters([ "getAudios"]),
 
   },
 
@@ -150,18 +156,18 @@ export default {
   data() {
  
     return {
-      pageTitle: "Categories",
-      url: "/categories",
-      speakers: [],
+      pageTitle: "Items",
+      url: "/items",
+      audios: [],
 
     };
   },
   methods: {
-    ...mapActions(['fetchSpeakers']),
+    ...mapActions(['fetchAudios']),
   
-    showModal(id, speaker = null) {
-      if (speaker) {
-        this.$store.commit("SET_SPEAKER", speaker);
+    showModal(id, audio = null) {
+      if (audio) {
+        this.$store.commit("SET_AUDIO", audio);
       }
       $(id).modal({
         show: true,
@@ -174,6 +180,7 @@ export default {
     this.destroyItem();
     this.onModalHidden("#add-account");
     this.onModalHidden("#edit-account");
+    this.onModalHidden("#edit-status");
   }
 };
 </script>

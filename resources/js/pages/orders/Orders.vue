@@ -13,12 +13,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <span class="float-left d-none d-md-block">{{this.pageTitle}}</span>
-                <button
-                  :disabled="!isOnline"
-                  type="button"
-                  class="btn btn-success mr-2 btn-sm float-right"
-                  @click="showModal('#add-category')"
-                >Add Category</button>
+               
               </div>
               <!-- /.col -->
             </div>
@@ -32,7 +27,7 @@
               <label class="d-flex">
                 Show
                 <select
-                  v-model="getSpeakerData.length"
+                  v-model="getOrderData.length"
                   @change="getData()"
                   class="form-control mx-2"
                 >
@@ -49,7 +44,7 @@
                 <input
                   class="form-control"
                   type="text"
-                  v-model="getSpeakerData.search"
+                  v-model="getOrderData.search"
                   placeholder="Search Table"
                   @input="getData()"
                 />
@@ -67,21 +62,21 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-if="speakers.length==0" class="odd"><td valign="top" colspan="9" class="text-center dataTables_empty">No data available in table</td></tr>
+                <tr v-if="orders.length==0" class="odd"><td valign="top" colspan="9" class="text-center dataTables_empty">No data available in table</td></tr>
 
-                <tr v-for="account in speakers" :key="account.id">
-                  <td>{{account.no}}</td>
+                <tr v-for="order in orders" :key="order.id">
+                  <td>{{order.no}}</td>
                   <td><img style="display:block; margin: 0 auto;"
                 id="imgUrl"
-                :src="account.imgUrl || '/images/no-image.jpg'"
+                :src="order.imgUrl || '/images/no-image.jpg'"
                 width="100"
                 height="auto"
                 alt="no image"
               /></td>
-                  <td>{{account.label}}</td>
-                  <td>
+                  <td>{{order.status}}</td>
+                   <td>
                     <div id="del_el" class="btn-group">
-                        <router-link :to="`/audio/${account.id}`">View</router-link>
+                        <router-link :to="`/audio/${order.id}`">view</router-link>
                       <a
                         href
                         class="dropdown-toggle dropdown-toggle-split"
@@ -89,11 +84,13 @@
                         data-reference="parent"
                       ></a>
                       <div class="dropdown-menu">
+                      
+
                         <a
                           class="dropdown-item"
                           href
-                          @click.prevent="showModal('#edit-account', account)"
-                        >Edit</a>
+                          @click.prevent="showModal('#edit-status', order)"
+                        >Update Status</a>
                       </div>
                     </div>
                   </td>
@@ -114,8 +111,7 @@
               <i class="fa fa-trash"></i> Delete Multiple
             </button> -->
 
-            <EditSpeaker />
-            <AddCategory />
+            <EditOrder />
           </div>
         </div>
       </div>
@@ -127,22 +123,20 @@
 import Pagination from "@/components/common/Pagination.vue";
 import datatable from "./mixins/datatable";
 import globalDatatableMixin from "@/plugins/mixins/tabledata.js";
-import EditSpeaker from "./EditSpeaker";
-import AddCategory from "./Add";
+import EditOrder from "./EditOrder";
 import { mapActions, mapGetters } from "vuex";
 export default {
   mixins: [datatable, globalDatatableMixin],
 
   components: {
-    AddCategory,
-    EditSpeaker,
+    EditOrder,
     Pagination
   },
 
  
 
   computed: {
-    ...mapGetters([ "getSpeakers"]),
+    ...mapGetters([ "getOrders"]),
 
   },
 
@@ -150,18 +144,18 @@ export default {
   data() {
  
     return {
-      pageTitle: "Categories",
-      url: "/categories",
-      speakers: [],
+      pageTitle: "Orders",
+      url: "/orders",
+      orders: [],
 
     };
   },
   methods: {
-    ...mapActions(['fetchSpeakers']),
+    ...mapActions(['fetchOrders']),
   
-    showModal(id, speaker = null) {
-      if (speaker) {
-        this.$store.commit("SET_SPEAKER", speaker);
+    showModal(id, order = null) {
+      if (order) {
+        this.$store.commit("SET_ORDER", order);
       }
       $(id).modal({
         show: true,
